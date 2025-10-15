@@ -1,8 +1,3 @@
-#Run steps in traefik-swarm-deployment-Pre-Req-Steps.
-#Update Route53 DNS Records for www, vote, result.
-#docker stack deploy -c traefik2.yml traefik
-#docker stack deploy -c votingapp_with_traefik.yml voting
-#Host(`vote.atkrp.store`) || Host(`www.atkrp.store`) giving issues. Create it for both http and https in the file.
 version: "3"
 services:
   redis:
