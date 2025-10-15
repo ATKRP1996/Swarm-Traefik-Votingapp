@@ -10,7 +10,7 @@ This guide provides step-by-step instructions to set up a Docker Swarm cluster o
   - Terraform (&gt;= 1.4.0).
   - Docker (for local testing).
   - SSH client (e.g., OpenSSH).
-- **Domain**: Managed via Route 53 or similar (e.g., `atkrp.store`). Prepare subdomains: `traefik.atkrp.store`, `vote.atkrp.store`, `result.atkrp.store`, `www.atkrp.store`.
+- **Domain**: Managed via Route 53 or similar (e.g., `example.in`). Prepare subdomains: `traefik.example.in`, `vote.example.in`, `result.example.in`, `www.example.in`.
 - **AMI**: Verify Ubuntu AMI ID (`ami-0360c520857e3138f`) for your region.
 
 ## Step 1: Set Up Terraform Infrastructure
@@ -43,10 +43,10 @@ This guide provides step-by-step instructions to set up a Docker Swarm cluster o
 ## Step 2: Configure DNS Records
 
 1. In Route 53 (or your DNS provider), create A (ALIAS) records pointing to the NLB DNS name:
-   - `traefik.atkrp.store` → NLB DNS.
-   - `vote.atkrp.store` → NLB DNS.
-   - `result.atkrp.store` → NLB DNS.
-   - `www.atkrp.store` → NLB DNS.
+   - `traefik.example.in` → NLB DNS.
+   - `vote.example.in` → NLB DNS.
+   - `result.example.in` → NLB DNS.
+   - `www.example.in` → NLB DNS.
 
 ## Step 3: Set Up Docker Swarm
 
@@ -87,9 +87,9 @@ This guide provides step-by-step instructions to set up a Docker Swarm cluster o
    export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
    sudo docker node update --label-add traefik-public.traefik-public-certificates=true $NODE_ID
    export EMAIL=example@gmail.com
-   export DOMAIN=traefik.atkrp.store
+   export DOMAIN=traefik.example.in
    export TRAEFIK_REPLICAS=1
-   export USERNAME=atkrpadmin
+   export USERNAME=admin
    export PASSWORD=Passwordonly123
    export HASHED_PASSWORD=$(openssl passwd -apr1 $PASSWORD)
    ```
@@ -100,7 +100,7 @@ This guide provides step-by-step instructions to set up a Docker Swarm cluster o
    sudo docker stack deploy -c traefik.yml traefik
    ```
 
-4. Verify: Access `https://traefik.atkrp.store` (credentials: `atkrpadmin:Passwordonly123`).
+4. Verify: Access `https://traefik.example.in` (credentials: `admin:Passwordonly123`).
 
 ## Step 5: Deploy Voting Application
 
@@ -120,14 +120,14 @@ This guide provides step-by-step instructions to set up a Docker Swarm cluster o
 
 4. Test URLs:
 
-   - Voting: `https://vote.atkrp.store` or `https://www.atkrp.store`.
-   - Results: `https://result.atkrp.store`.
+   - Voting: `https://vote.example.in` or `https://www.example.in`.
+   - Results: `https://result.example.in`.
 
 ## Troubleshooting
 
 - **Traefik Logs**: `sudo docker service logs traefik_traefik`.
 - **App Logs**: `sudo docker service logs voting_vote`.
-- **DNS**: Use `dig vote.atkrp.store` to check resolution.
+- **DNS**: Use `dig vote.example.in` to check resolution.
 - **Swarm Network**: `sudo docker network ls`.
 
 ## Cleanup
