@@ -1,0 +1,15 @@
+Using traefik.yml: copy the content into the main manager node.
+
+docker network create --driver=overlay traefik-public
+
+export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
+docker node update --label-add traefik-public.traefik-public-certificates=true $NODE_ID
+export EMAIL=example@gmail.com
+export DOMAIN=traefik.atkrp.store
+export TRAEFIK_REPLICAS=1
+
+export USERNAME=atkrpadmin
+export PASSWORD=Passwordonly123
+export HASHED_PASSWORD=$(openssl passwd -apr1 $PASSWORD)
+
+docker stack deploy -c traefik.yml traefik
