@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# deploy-swarm.sh
+# deploy-swarm.sh or project-script.sh
 # Script to initialize Docker Swarm, set up environment variables, create stack files,
 # and deploy Traefik and Voting App stacks on an Ubuntu manager node.
 
