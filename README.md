@@ -5,7 +5,7 @@ This guide provides step-by-step instructions to set up a Docker Swarm cluster o
 ## Prerequisites
 
 - **AWS Account**: With programmatic access (Access Key ID, Secret Access Key). Configure AWS CLI with `aws configure`.
-- **EC2 Key Pair**: Named `myawskey` in your AWS region (default: `us-east-1`). Private key at `C:/Users/akhil/.ssh/myawskey.pem` (update if different).
+- **EC2 Key Pair**: Named `myawskey` in your AWS region (default: `us-east-1`). Private key at `C:/Users/user/.ssh/myawskey.pem` (update if different).
 - **Software**:
   - Terraform (&gt;= 1.4.0).
   - Docker (for local testing).
