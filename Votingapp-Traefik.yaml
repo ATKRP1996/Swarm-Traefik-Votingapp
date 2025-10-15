@@ -31,7 +31,7 @@ services:
       placement:
         constraints: [node.role == manager]
   vote:
-    image: kiran2361993/testing:latestappvote
+    image: dockersamples/examplevotingapp_vote
     ports:
       - 5000:80
     networks:
@@ -59,7 +59,7 @@ services:
       restart_policy:
         condition: on-failure
   result:
-    image: kiran2361993/testing:latestappresults
+    image: dockersamples/examplevotingapp_result
     ports:
       - 5001:80
     networks:
@@ -88,7 +88,7 @@ services:
       restart_policy:
         condition: on-failure
   worker:
-    image: kiran2361993/testing:latestappworker
+    image: dockersamples/examplevotingapp_worker
     networks:
       - traefik-public
     depends_on:
