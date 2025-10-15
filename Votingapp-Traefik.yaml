@@ -46,10 +46,10 @@ services:
         - traefik.constraint-label=traefik-public
         - traefik.http.middlewares.vote-https-redirect.redirectscheme.scheme=https
         - traefik.http.middlewares.vote-https-redirect.redirectscheme.permanent=true
-        - traefik.http.routers.vote-public-http.rule=Host(`vote.atkrp.store`) || Host(`www.atkrp.store`)
+        - traefik.http.routers.vote-public-http.rule=Host(`vote.example.in`) || Host(`www.example.in`)
         - traefik.http.routers.vote-public-http.entrypoints=http
         - traefik.http.routers.vote-public-http.middlewares=https-redirect
-        - traefik.http.routers.vote-public-https.rule=Host(`vote.atkrp.store`) || Host(`www.atkrp.store`)
+        - traefik.http.routers.vote-public-https.rule=Host(`vote.example.in`) || Host(`www.example.in`)
         - traefik.http.routers.vote-public-https.entrypoints=https
         - traefik.http.routers.vote-public-https.tls=true
         - traefik.http.routers.vote-public-https.tls.certresolver=le
@@ -74,10 +74,10 @@ services:
         - traefik.constraint-label=traefik-public
         - traefik.http.middlewares.result-https-redirect.redirectscheme.scheme=https
         - traefik.http.middlewares.result-https-redirect.redirectscheme.permanent=true
-        - traefik.http.routers.result-public-http.rule=Host(`result.atkrp.store`)
+        - traefik.http.routers.result-public-http.rule=Host(`result.example.in`)
         - traefik.http.routers.result-public-http.entrypoints=http
         - traefik.http.routers.result-public-http.middlewares=https-redirect
-        - traefik.http.routers.result-public-https.rule=Host(`result.atkrp.store`)
+        - traefik.http.routers.result-public-https.rule=Host(`result.example.in`)
         - traefik.http.routers.result-public-https.entrypoints=https
         - traefik.http.routers.result-public-https.tls=true
         - traefik.http.routers.result-public-https.tls.certresolver=le
