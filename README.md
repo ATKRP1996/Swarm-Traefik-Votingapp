@@ -144,3 +144,25 @@ This guide provides step-by-step instructions to set up a Docker Swarm cluster o
    ```
    terraform destroy
    ```
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or pull requests for any improvements or fixes. Please ensure your contributions align with the MIT License.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Disclaimer
+
+This project uses configuration files (`traefik.yml`, `Votingapp-Traefik.yaml`, `main.tf`, `outputs.tf`, `variables.tf`, `Traefik-Deployment.txt`) sourced from Sai Kiran’s repositories:
+
+- [Mastering-Docker](https://github.com/saikiranpi/Mastering-Docker/tree/main/Day10)
+- [Terraform-Docker-Swarm-Cluster](https://github.com/saikiranpi/Terraform-Docker-Swarm-Cluster)
+
+These files are licensed under the MIT License and have been used and/or adapted for deploying a Docker Swarm cluster with Traefik and a voting application on AWS. I am grateful to Sai Kiran for their foundational work.
+
+## Acknowledgements
+
+- Thanks to Sai Kiran for providing the original configuration files and inspiration through their open-source work.
+- This project builds upon Docker Swarm, Traefik, and AWS-based deployment tutorials.
