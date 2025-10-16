@@ -252,6 +252,42 @@ resource "aws_instance" "swarm_worker" {
   }
 }
 
+resource "null_resource" "swarm_init" {
+  provisioner "remote-exec" {
+    inline = [
+      "docker swarm init --advertise-addr ${aws_instance.swarm_master[0].public_ip}"
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file(var.key_path)
+      host        = aws_instance.swarm_master[0].public_ip
+    }
+  }
+
+  depends_on = [aws_instance.swarm_master]
+}
+
+resource "null_resource" "swarm_join_worker" {
+  count = 2
+
+  provisioner "remote-exec" {
+    inline = [
+      "docker swarm join --token $(ssh -o StrictHostKeyChecking=no -i /home/ubuntu/stagingPEM.pem ubuntu@${aws_instance.swarm_master[0].public_ip} 'docker swarm join-token worker -q') ${aws_instance.swarm_master[0].public_ip}:2377"
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file(var.key_path)
+      host        = aws_instance.swarm_worker[count.index].public_ip
+    }
+  }
+
+  depends_on = [null_resource.swarm_init]
+}
+
 #############################################
 # Network Load Balancer + TGs + Listeners
 # Strategy: Instance targets (routing-mesh ready)
